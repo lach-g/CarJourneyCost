@@ -7,7 +7,7 @@ A command line application that calculates the current fuel cost of a journey by
 Currently limited to Western Australia
 
 ### How to
-To get an up-to-date journey cost estimation run:
+To get an up-to-date journey cost estimation run and fill inputs:
 ```bash
 python journey_cost.py 
 ```
