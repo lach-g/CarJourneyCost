@@ -3,11 +3,15 @@
 ### Description
 A command line application that calculates the current fuel cost of a journey by car.
 
+### Limitations
+Currently limited to Western Australia
+
 ### How to
 To get an up-to-date journey cost estimation run:
 ```bash
-python journey_cost.py <origin address> <destination address>
+python journey_cost.py 
 ```
+
 Output:
 1. Closest matching addresses
 2. Journey distance
