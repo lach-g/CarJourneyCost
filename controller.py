@@ -3,13 +3,14 @@ import requests
 import config
 from address import Address
 from journey import Journey
+from fuel_usage import Fuel_Usage
 
 def address_input(point_of_journey: str) -> Address:
     print(f"{point_of_journey} Address\n---")
-    street_num = input("Street Number: ")
-    street_name = input("Street Name: ")
-    suburb = input("Suburb: ")
-    post_code = input("Post Code: ")
+    street_num = input("Street Number:\n")
+    street_name = input("Street Name:\n")
+    suburb = input("Suburb:\n")
+    post_code = input("Post Code:\n")
     print("\n")
     return Address(street_num, street_name, suburb, post_code)
 
@@ -50,3 +51,16 @@ def create_journey(data) -> Journey:
     seconds = data["rows"][0]["elements"][0]["duration"]["value"]
     journey = Journey(origin, destination, meters, seconds)
     return journey
+
+def create_fuel_usage(distance) -> Fuel_Usage:
+    fuelType = input("Fuel Type (91, 95, 98, Diesel):\n")
+    litresPerHundredKmsStr = input("Litres per 100 km of car (Press Enter if unknown):\n")
+    if litresPerHundredKmsStr != "":
+        litresPerHundredKms = float(litresPerHundredKmsStr)
+        totalFuelUsage = round(distance * (litresPerHundredKms / 100), 2)
+        print("Total Fuel Usage (l): " + str(totalFuelUsage))
+    else:
+        litresPerHundredKms = 13.4
+        totalFuelUsage = round(distance * (litresPerHundredKms / 100), 2)
+        print("Using current average fuel usage (13.4 l/100kms)\nTotal Fuel Usage (l): " + str(totalFuelUsage))
+    return Fuel_Usage(fuelType, litresPerHundredKms, totalFuelUsage)

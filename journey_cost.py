@@ -5,12 +5,12 @@ from journey import Journey
 import controller
 
 def main():
-    origin = controller.address_input("Origin")
-    destination = controller.address_input("Destination")
+    #origin = controller.address_input("Origin")
+    #destination = controller.address_input("Destination")
 
     # DEBUG
-    # origin = Address("37A", "Farris Street", "Innaloo", "6018")
-    #destination = Address("8", "Webb Street", "Cottesloe", "6011")
+    origin = Address("37A", "Farris Street", "Innaloo", "6018")
+    destination = Address("8", "Webb Street", "Cottesloe", "6011")
     #origin = Address("", "", "", "")
     #destination = Address("", "", "", "")
 
@@ -27,6 +27,14 @@ def main():
     # Create Journey Model
     journey = controller.create_journey(data)
     print(journey)
+
+    # Create Fuel Usage Model
+    fuel_usage = controller.create_fuel_usage(journey.kms)
+    print("Type: " + fuel_usage.fuel_type)
+    print("Mileage: " + str(fuel_usage.mileage))
+    print("Total Fuel Usage: " + str(fuel_usage.total_fuel_usage))
+
+
 
 if __name__ == "__main__":
     main()
