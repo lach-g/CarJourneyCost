@@ -1,31 +1,32 @@
-class Address:
-    def __init__(self, street_num, street_name, suburb, postcode):
-        self.street_num = street_num
-        self.street_name = street_name
-        self.suburb = suburb
-        self.postcode = postcode
+import json
 
-    def __repr__(self):
-        return self.street_num + " " + self.street_name + ", " + self.suburb + ", " + self.postcode
+from address import Address
+from journey import Journey
+import controller
 
 def main():
-    origin = address_input("Origin")
-    destination = address_input("Destination")
-    print("Origin: " + str(origin))
-    print("Destination: " + str(destination))
-    
+    origin = controller.address_input("Origin")
+    destination = controller.address_input("Destination")
 
-def address_input(point_of_journey: str) -> Address:
-    print(f"{point_of_journey} Address\n---")
-    street_num = input("Street Number: ")
-    street_name = input("Street Name: ")
-    suburb = input("Suburb: ")
-    post_code = input("Post Code: ")
-    print("\n")
-    return Address(street_num, street_name, suburb, post_code)
+    # DEBUG
+    # origin = Address("37A", "Farris Street", "Innaloo", "6018")
+    #destination = Address("8", "Webb Street", "Cottesloe", "6011")
+    #origin = Address("", "", "", "")
+    #destination = Address("", "", "", "")
 
+    # Quering Google Maps API
+    response = controller.query_maps(origin, destination)
 
+    # Parsing response for distance and time traveling
+    data = response.json()
+    success = controller.maps_query_success(data)
 
+    if not success:
+        return 0
+
+    # Create Journey Model
+    journey = controller.create_journey(data)
+    print(journey)
 
 if __name__ == "__main__":
     main()
