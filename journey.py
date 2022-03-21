@@ -16,7 +16,7 @@ class Journey:
         return minutes
 
     def __repr__(self):
-        return ("\nJourney\nOrigin: " + self.origin +
+        return ("\nJourney\n---\nOrigin: " + self.origin +
                 "\nDestination: " + self.destination +
                 "\nDistance: " + str(self.kms) +
                 "\nDuration: " + str(self.minutes) + "\n")

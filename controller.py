@@ -62,5 +62,5 @@ def create_fuel_usage(distance) -> Fuel_Usage:
     else:
         litresPerHundredKms = 13.4
         totalFuelUsage = round(distance * (litresPerHundredKms / 100), 2)
-        print("Using current average fuel usage (13.4 l/100kms)\nTotal Fuel Usage (l): " + str(totalFuelUsage))
+        print("Fuel Usage\n---\nUsing current average fuel usage (13.4 l/100kms)\nTotal Fuel Usage (l): " + str(totalFuelUsage))
     return Fuel_Usage(fuelType, litresPerHundredKms, totalFuelUsage)
